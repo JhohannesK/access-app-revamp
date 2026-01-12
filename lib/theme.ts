@@ -1,5 +1,5 @@
 import { DarkTheme, DefaultTheme, type Theme } from '@react-navigation/native';
- 
+
 export const THEME = {
   light: {
     background: 'hsl(0 0% 100%)',
@@ -8,9 +8,9 @@ export const THEME = {
     cardForeground: 'hsl(0 0% 3.9%)',
     popover: 'hsl(0 0% 100%)',
     popoverForeground: 'hsl(0 0% 3.9%)',
-    primary: 'hsl(0 0% 9%)',
+    primary: 'hsl(71.23,70.95%,52.75%)',
     primaryForeground: 'hsl(0 0% 98%)',
-    secondary: 'hsl(0 0% 96.1%)',
+    secondary: 'hsl(70,60%,96.08%)',
     secondaryForeground: 'hsl(0 0% 9%)',
     muted: 'hsl(0 0% 96.1%)',
     mutedForeground: 'hsl(0 0% 45.1%)',
@@ -18,7 +18,8 @@ export const THEME = {
     accentForeground: 'hsl(0 0% 9%)',
     destructive: 'hsl(0 84.2% 60.2%)',
     border: 'hsl(0 0% 89.8%)',
-    input: 'hsl(0 0% 89.8%)',
+    input: 'hsl(69.68,60.78%,10%)',
+    subText: 'hsl(70.59,7.69%,56.67%)',
     ring: 'hsl(0 0% 63%)',
     radius: '0.625rem',
     chart1: 'hsl(12 76% 61%)',
@@ -34,7 +35,7 @@ export const THEME = {
     cardForeground: 'hsl(0 0% 98%)',
     popover: 'hsl(0 0% 3.9%)',
     popoverForeground: 'hsl(0 0% 98%)',
-    primary: 'hsl(0 0% 98%)',
+    primary: 'hsl(71.23,70.95%,52.75%)',
     primaryForeground: 'hsl(0 0% 9%)',
     secondary: 'hsl(0 0% 14.9%)',
     secondaryForeground: 'hsl(0 0% 98%)',
@@ -54,7 +55,7 @@ export const THEME = {
     chart5: 'hsl(340 75% 55%)',
   },
 };
- 
+
 export const NAV_THEME: Record<'light' | 'dark', Theme> = {
   light: {
     ...DefaultTheme,

@@ -1,8 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  body {
+    font-family: 'Manrope', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200 800;
+    font-style: normal;
+    font-variation-settings: 'wght' 200 800;
+    font-variation-settings: 'wght' 200 800;
+  }
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -10,9 +20,9 @@
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --primary: 71.23 70.95% 52.75%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
+    --secondary: 70 60% 96.08%;
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
@@ -20,7 +30,8 @@
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
+    --input: 69.68 60.78% 10%;
+    --sub-text: 70.59 7.69% 56.67%;
     --ring: 0 0% 63%;
     --radius: 0.625rem;
     --chart-1: 12 76% 61%;
@@ -37,9 +48,9 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
+    --primary: 71.23 70.95% 52.75%;
     --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
+    --secondary: 70 60% 96.08%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
@@ -47,7 +58,8 @@
     --accent-foreground: 0 0% 98%;
     --destructive: 0 70.9% 59.4%;
     --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
+    --input: 69.68 60.78% 10%;
+    --sub-text: 70.59 7.69% 56.67%;
     --ring: 300 0% 45%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
