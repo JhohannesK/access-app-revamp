@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        manrope: ['Manrope', 'sans-serif'],
+        sans: ['Manrope_400Regular', 'Manrope', 'sans-serif'],
+        manrope: ['Manrope_400Regular', 'Manrope', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',
