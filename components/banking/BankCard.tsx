@@ -19,7 +19,7 @@ export function BankCard({ cardNumber, cardholderName, bankLogo }: BankCardProps
   };
 
   return (
-    <View className="mx-4 mb-6 overflow-hidden rounded-2xl bg-white shadow-lg">
+    <View className="mx-4 mb-6 overflow-hidden rounded-2xl bg-card shadow-lg">
       {/* Card Background with Diagonal Stripe */}
       <View className="relative h-52">
         {/* Diagonal Stripe */}
@@ -29,7 +29,7 @@ export function BankCard({ cardNumber, cardholderName, bankLogo }: BankCardProps
           {Array.from({ length: 8 }).map((_, i) => (
             <View
               key={i}
-              className="absolute h-full w-px bg-gray-800"
+              className="absolute h-full w-px bg-card-foreground"
               style={{
                 left: `${i * 12.5}%`,
                 transform: [{ rotate: '45deg' }],
@@ -53,7 +53,7 @@ export function BankCard({ cardNumber, cardholderName, bankLogo }: BankCardProps
                 <AccessLogoSvg width={80} height={15} color="#060CD2" />
               </View>
             )}
-            <Icon as={WifiIcon} className="text-gray-600" size={24} />
+            <Icon as={WifiIcon} className="text-card-foreground" size={24} />
           </View>
 
           {/* Chip */}
@@ -61,21 +61,21 @@ export function BankCard({ cardNumber, cardholderName, bankLogo }: BankCardProps
 
           {/* Card Number */}
           <View className="mb-4">
-            <Text className="text-xl font-semibold tracking-wider text-gray-800">
+            <Text className="text-xl font-semibold tracking-wider text-card-foreground">
               {formatCardNumber(cardNumber)}
             </Text>
           </View>
 
           {/* Cardholder Name */}
           <View className="mb-2">
-            <Text className="text-sm font-medium uppercase tracking-wide text-gray-700">
+            <Text className="text-sm font-medium uppercase tracking-wide text-card-foreground">
               {cardholderName}
             </Text>
           </View>
 
           {/* Visa Logo */}
           <View className="absolute bottom-5 right-5">
-            <Text className="text-lg font-bold text-gray-800">VISA</Text>
+            <Text className="text-lg font-bold text-card-foreground">VISA</Text>
           </View>
         </View>
       </View>

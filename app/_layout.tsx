@@ -10,6 +10,7 @@ import { useColorScheme } from 'nativewind';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { manropeFonts } from '@/lib/fonts';
+import { ThemeVariables } from '@/components/ThemeVariables';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,11 +35,13 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={NAV_THEME[colorScheme ?? 'light']}>
-      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-      <PortalHost />
+      <ThemeVariables>
+        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+        <PortalHost />
+      </ThemeVariables>
     </ThemeProvider>
   );
 }

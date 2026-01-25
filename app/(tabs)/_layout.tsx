@@ -4,7 +4,7 @@ import { NativeTabs } from 'expo-router/unstable-native-tabs';
 const TabLayout = () => {
   return (
     <NativeTabs>
-      <NativeTabs.Trigger name="index">
+      <NativeTabs.Trigger name="home">
         <NativeTabs.Trigger.Icon sf={{ default: 'house', selected: 'house.fill' }} md="home" />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="scan">
