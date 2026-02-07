@@ -13,9 +13,11 @@ import {
   CoinsIcon,
   PhoneIcon,
 } from 'lucide-react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import { TransferSuccess } from '@/components/transfer/TransferSuccess';
 
 const MOCK_DATA = {
   user: {
@@ -59,10 +61,27 @@ const MOCK_DATA = {
 
 export default function HomeScreen() {
   const [balanceVisible, setBalanceVisible] = useState(true);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const insets = useSafeAreaInsets();
+  const params = useLocalSearchParams();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (params.transferSuccess === 'true') {
+      setShowSuccessModal(true);
+    }
+  }, [params.transferSuccess]);
 
   const toggleBalanceVisibility = () => {
     setBalanceVisible((prev) => !prev);
+  };
+
+  const handleSuccessContinue = () => {
+    setShowSuccessModal(false);
+  };
+
+  const handleDownloadReceipt = () => {
+    console.log('Downloading receipt...');
   };
 
   return (
@@ -156,6 +175,15 @@ export default function HomeScreen() {
           </View>
         </View>
       </ScrollView>
+
+      <TransferSuccess
+        open={showSuccessModal}
+        onOpenChange={setShowSuccessModal}
+        onDownloadReceipt={handleDownloadReceipt}
+        onContinueBanking={handleSuccessContinue}
+        amount={(params.amount as string) || '₵0.00'}
+        recipientName={(params.recipientName as string) || ''}
+      />
     </View>
   );
 }

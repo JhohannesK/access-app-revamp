@@ -8,7 +8,6 @@ import { ArrowLeftIcon } from 'lucide-react-native';
 import { TransferStep1 } from '@/components/transfer/TransferStep1';
 import { TransferStep2 } from '@/components/transfer/TransferStep2';
 import { TransferStep3 } from '@/components/transfer/TransferStep3';
-import { TransferSuccess } from '@/components/transfer/TransferSuccess';
 
 /**
  * TransferScreen - Multi-step transfer flow
@@ -27,7 +26,6 @@ import { TransferSuccess } from '@/components/transfer/TransferSuccess';
 export default function TransferScreen() {
   const insets = useSafeAreaInsets();
   const [currentStep, setCurrentStep] = useState(1);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   // Form state - managed at top level so it persists across steps
   const [formData, setFormData] = useState({
@@ -98,11 +96,25 @@ export default function TransferScreen() {
 
   const handleStep3Confirm = () => {
     console.log('Transfer confirmed:', formData);
-    setShowSuccessModal(true);
+    // Navigate to home with success params
+    router.push({
+      pathname: '/(tabs)/home',
+      params: {
+        transferSuccess: 'true',
+        amount: transferDetails.transferAmount,
+        recipientName: 'Regina Afia Nkum',
+      },
+    });
+
+    setFormData({
+      accountNumber: '',
+      amount: '',
+      purpose: '',
+    });
   };
 
-  const handleSuccessContinue = () => {
-    setShowSuccessModal(false);
+  const handleStep3Cancel = () => {
+    setCurrentStep(1);
     setFormData({
       accountNumber: '',
       amount: '',
@@ -110,15 +122,6 @@ export default function TransferScreen() {
     });
     router.back();
   };
-
-  const handleStep3Cancel = () => {
-    router.back();
-  };
-
-  const handleDownloadReceipt = () => {
-    console.log('Downloading receipt...');
-  };
-
 
   const calculateTransferDetails = () => {
     const transferAmount = parseFloat(formData.amount) || 0;
@@ -180,16 +183,6 @@ export default function TransferScreen() {
             onCancel={handleStep3Cancel}
           />
         );
-      case 4:
-        return (
-          <TransferSuccess open={showSuccessModal}
-            onOpenChange={setShowSuccessModal}
-            onDownloadReceipt={handleDownloadReceipt}
-            onContinueBanking={handleSuccessContinue}
-            amount={transferDetails.transferAmount}
-            recipientName={'Regina Afia Nkum'}
-          />
-        );
 
       default:
         return null;
@@ -210,16 +203,6 @@ export default function TransferScreen() {
       </View>
 
       {renderCurrentStep()}
-
-      {/* Success Modal */}
-      <TransferSuccess
-        open={showSuccessModal}
-        onOpenChange={setShowSuccessModal}
-        onDownloadReceipt={handleDownloadReceipt}
-        onContinueBanking={handleSuccessContinue}
-        amount={transferDetails.transferAmount}
-        recipientName="Regina Afia Nkum"
-      />
     </View>
   );
 }

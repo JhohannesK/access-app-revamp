@@ -1,5 +1,7 @@
 import React from 'react';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
+import { SendIcon } from 'lucide-react-native';
+import { Icon } from '@/components/ui/icon';
 
 const TabLayout = () => {
   return (
@@ -11,7 +13,7 @@ const TabLayout = () => {
         <NativeTabs.Trigger.Icon sf="qrcode" md="qr_code" />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="transfer">
-        <NativeTabs.Trigger.Icon sf="arrow.left.arrow.right" md="arrow_left" />
+        <NativeTabs.Trigger.Icon src={<Icon as={SendIcon} className="text-input" size={20} />}  />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="explore">
         <NativeTabs.Trigger.Icon sf="square.grid.2x2" md="explore" />

@@ -75,7 +75,7 @@ export function SignInForm() {
               <Text>Continue</Text>
             </Button>
           </View>
-          <Text className="text-center text-sm">
+          {/* <Text className="text-center text-sm">
             Don&apos;t have an account?{' '}
             <Pressable
               onPress={() => {
@@ -83,7 +83,7 @@ export function SignInForm() {
               }}>
               <Text className="text-sm underline underline-offset-4">Sign up</Text>
             </Pressable>
-          </Text>
+          </Text> */}
           <View className="flex-row items-center">
             <Separator className="flex-1" />
             <Text className="text-muted-foreground px-4 text-sm">or</Text>
