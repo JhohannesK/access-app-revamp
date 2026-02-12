@@ -47,6 +47,9 @@ importers:
       expo-glass-effect:
         specifier: ~55.0.5
         version: 55.0.5(expo@55.0.0-preview.5)(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.0))(react@19.2.0)
+      expo-haptics:
+        specifier: ~14.0.0
+        version: 14.0.1(expo@55.0.0-preview.5)
       expo-image:
         specifier: ~55.0.1
         version: 55.0.1(expo@55.0.0-preview.5)(react-native-web@0.21.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.0))(react@19.2.0)
@@ -2008,6 +2011,11 @@ packages:
       expo: '*'
       react: '*'
       react-native: '*'
+
+  expo-haptics@14.0.1:
+    resolution: {integrity: sha512-V81FZ7xRUfqM6uSI6FA1KnZ+QpEKnISqafob/xEfcx1ymwhm4V3snuLWWFjmAz+XaZQTqlYa8z3QbqEXz7G63w==}
+    peerDependencies:
+      expo: '*'
 
   expo-image@55.0.1:
     resolution: {integrity: sha512-yrAANV6qgY6k2pVG7hL5pxWsm7RlKn5JfyqIPOSaAo0VIYmadB5ys2Fu+tntZi98cTCkJE+gzQUW8/Z/6dwzeg==}
@@ -6098,6 +6106,10 @@ snapshots:
       expo: 55.0.0-preview.5(@babel/core@7.28.6)(@expo/dom-webview@0.2.8)(@expo/metro-runtime@55.0.1)(expo-router@55.0.0-beta.2)(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.0))(react@19.2.0)
       react: 19.2.0
       react-native: 0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.0)
+
+  expo-haptics@14.0.1(expo@55.0.0-preview.5):
+    dependencies:
+      expo: 55.0.0-preview.5(@babel/core@7.28.6)(@expo/dom-webview@0.2.8)(@expo/metro-runtime@55.0.1)(expo-router@55.0.0-beta.2)(react-dom@19.2.0(react@19.2.0))(react-native-web@0.21.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.0))(react@19.2.0)
 
   expo-image@55.0.1(expo@55.0.0-preview.5)(react-native-web@0.21.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.1(@babel/core@7.28.6)(@types/react@19.2.9)(react@19.2.0))(react@19.2.0):
     dependencies:

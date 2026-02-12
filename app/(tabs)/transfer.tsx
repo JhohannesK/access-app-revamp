@@ -10,6 +10,7 @@ import { TransferStep1 } from '@/components/transfer/TransferStep1';
 import { TransferStep2 } from '@/components/transfer/TransferStep2';
 import { TransferStep3 } from '@/components/transfer/TransferStep3';
 import KeyboardAwareView from '@/components/ui/keyboard-aware-view';
+import { light, medium, success } from '@/lib/haptics';
 
 /**
  * TransferScreen - Multi-step transfer flow
@@ -84,19 +85,23 @@ export default function TransferScreen() {
    */
   const handleStep1Continue = () => {
     if (validateStep1()) {
+      medium();
       setCurrentStep(2);
     }
   };
 
   const handleStep2Continue = () => {
+    medium();
     setCurrentStep(3);
   };
 
   const handleStep2Edit = () => {
+    light();
     setCurrentStep(1);
   };
 
   const handleStep3Confirm = () => {
+    success();
     console.log('Transfer confirmed:', formData);
     // Navigate to home with success params
     router.push({
@@ -116,6 +121,7 @@ export default function TransferScreen() {
   };
 
   const handleStep3Cancel = () => {
+    light();
     setCurrentStep(1);
     setFormData({
       accountNumber: '',
@@ -205,13 +211,23 @@ export default function TransferScreen() {
             <Button
               variant="ghost"
               size="icon"
-              onPress={() => router.back()}
+              onPress={() => {
+                light();
+                router.back();
+              }}
               className="h-10 w-full">
               <Icon as={ArrowLeftIcon} className="text-input" size={24} />
             </Button>
           </GlassView>
         ) : (
-          <Button variant="ghost" size="icon" onPress={() => router.back()} className="h-10 w-10">
+          <Button
+            variant="ghost"
+            size="icon"
+            onPress={() => {
+              light();
+              router.back();
+            }}
+            className="h-10 w-10">
             <Icon as={ArrowLeftIcon} className="text-input" size={24} />
           </Button>
         )}

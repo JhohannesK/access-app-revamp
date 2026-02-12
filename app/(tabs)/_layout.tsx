@@ -1,7 +1,5 @@
 import React from 'react';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
-import { SendIcon } from 'lucide-react-native';
-import { Icon } from '@/components/ui/icon';
 import { THEME } from '@/lib/theme';
 
 const TabLayout = () => {
