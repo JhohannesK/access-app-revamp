@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View, ScrollView } from 'react-native';
+import { GlassView } from 'expo-glass-effect';
 import { ProgressIndicator } from './ProgressIndicator';
 import { Icon } from '@/components/ui/icon';
 import { ArrowUpIcon } from 'lucide-react-native';
@@ -39,7 +40,10 @@ export function TransferStep3({
           <Text className="text-4xl font-bold text-foreground font-manrope">{totalTransfer}</Text>
         </View>
 
-        <View className="mb-8">
+        <GlassView
+          style={{ marginBottom: 32, padding: 16, borderRadius: 16 }}
+          glassEffectStyle="regular"
+        >
           <Text className="mb-4 text-lg font-semibold text-foreground">
             Transfer detail
           </Text>
@@ -53,7 +57,7 @@ export function TransferStep3({
               <DetailRow label="Total transfer" value={totalTransfer} isBold />
             </View>
           </View>
-        </View>
+        </GlassView>
 
         <View className="gap-3">
           <Button onPress={onConfirm} className="w-full">

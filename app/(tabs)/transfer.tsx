@@ -1,23 +1,25 @@
 import { useState } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
+import { GlassView } from 'expo-glass-effect';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { ArrowLeftIcon } from 'lucide-react-native';
 import { TransferStep1 } from '@/components/transfer/TransferStep1';
 import { TransferStep2 } from '@/components/transfer/TransferStep2';
 import { TransferStep3 } from '@/components/transfer/TransferStep3';
+import KeyboardAwareView from '@/components/ui/keyboard-aware-view';
 
 /**
  * TransferScreen - Multi-step transfer flow
- * 
+ *
  * Architecture:
  * 1. State management: Uses React useState to manage step and form data
  * 2. Step navigation: Linear progression (1 -> 2 -> 3) with ability to go back
  * 3. Form validation: Validates inputs before allowing progression
  * 4. Data flow: Form data flows down as props, callbacks flow up for updates
- * 
+ *
  * Steps:
  * - Step 1: Input form (account number, amount, purpose)
  * - Step 2: Review (allows editing before confirmation)
@@ -42,7 +44,7 @@ export default function TransferScreen() {
 
   /**
    * Validation logic
-   * 
+   *
    * Why here? Centralized validation ensures consistency.
    * We validate before allowing step progression.
    */
@@ -76,7 +78,7 @@ export default function TransferScreen() {
 
   /**
    * Step navigation handlers
-   * 
+   *
    * These functions handle moving between steps.
    * Validation happens before progression to ensure data integrity.
    */
@@ -137,7 +139,6 @@ export default function TransferScreen() {
 
   const transferDetails = calculateTransferDetails();
 
-
   const renderCurrentStep = () => {
     switch (currentStep) {
       case 1:
@@ -149,12 +150,8 @@ export default function TransferScreen() {
             onAccountNumberChange={(value) =>
               setFormData((prev) => ({ ...prev, accountNumber: value }))
             }
-            onAmountChange={(value) =>
-              setFormData((prev) => ({ ...prev, amount: value }))
-            }
-            onPurposeChange={(value) =>
-              setFormData((prev) => ({ ...prev, purpose: value }))
-            }
+            onAmountChange={(value) => setFormData((prev) => ({ ...prev, amount: value }))}
+            onPurposeChange={(value) => setFormData((prev) => ({ ...prev, purpose: value }))}
             onContinue={handleStep1Continue}
             errors={errors}
           />
@@ -190,19 +187,37 @@ export default function TransferScreen() {
   };
 
   return (
-    <View className="flex-1 bg-background" style={{ paddingTop: insets.top }}>
-      <View className="flex-row items-center px-4 py-3">
-        <Button
-          variant="ghost"
-          size="icon"
-          onPress={() => router.back()}
-          className="h-10 w-10"
-        >
-          <Icon as={ArrowLeftIcon} className="text-input" size={24} />
-        </Button>
-      </View>
+    <KeyboardAwareView keyboardVerticalOffset={Platform.OS === 'ios' ? 5 : 0}>
+      <View className="flex-1 bg-background" style={{ paddingTop: insets.top }}>
+        {Platform.OS === 'ios' ? (
+          <GlassView
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: 10,
+              paddingVertical: 10,
+              marginHorizontal: 16,
+              marginTop: 8,
+              borderRadius: 100,
+              width: 60,
+            }}
+            glassEffectStyle="regular">
+            <Button
+              variant="ghost"
+              size="icon"
+              onPress={() => router.back()}
+              className="h-10 w-full">
+              <Icon as={ArrowLeftIcon} className="text-input" size={24} />
+            </Button>
+          </GlassView>
+        ) : (
+          <Button variant="ghost" size="icon" onPress={() => router.back()} className="h-10 w-10">
+            <Icon as={ArrowLeftIcon} className="text-input" size={24} />
+          </Button>
+        )}
 
-      {renderCurrentStep()}
-    </View>
+        {renderCurrentStep()}
+      </View>
+    </KeyboardAwareView>
   );
 }

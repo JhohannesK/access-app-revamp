@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { View, ScrollView } from 'react-native';
+import { GlassView } from 'expo-glass-effect';
 import { ProgressIndicator } from './ProgressIndicator';
 import { DetailRow } from './TransferStep3';
 
@@ -25,7 +26,10 @@ export function TransferStep2({
       <View className="flex-1 px-4 py-6">
         <ProgressIndicator currentStep={2} totalSteps={3} />
 
-        <View className="mb-8">
+        <GlassView
+          style={{ marginBottom: 32, padding: 16, borderRadius: 16 }}
+          glassEffectStyle="regular"
+        >
           <Text className="mb-4 text-lg font-semibold text-foreground">
             Review Transfer Details
           </Text>
@@ -35,7 +39,7 @@ export function TransferStep2({
             <DetailRow label="Amount" value={amount} />
             <DetailRow label="Purpose" value={purpose} />
           </View>
-        </View>
+        </GlassView>
 
         <View className="gap-3">
           <Button onPress={onContinue} className="w-full">
