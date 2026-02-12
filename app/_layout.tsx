@@ -11,6 +11,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { manropeFonts } from '@/lib/fonts';
 import { ThemeVariables } from '@/components/ThemeVariables';
+import { useAuthStore } from '@/stores/auth';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,6 +23,7 @@ export {
 export default function RootLayout() {
   const { colorScheme } = useColorScheme();
   const [fontsLoaded, fontError] = useFonts(manropeFonts);
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
@@ -38,8 +40,13 @@ export default function RootLayout() {
       <ThemeVariables>
         <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
         <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="sign-in" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="index" />
+          <Stack.Protected guard={!isAuthenticated}>
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          </Stack.Protected>
+          <Stack.Protected guard={isAuthenticated}>
+            <Stack.Screen name="(app)" options={{ headerShown: false }} />
+          </Stack.Protected>
         </Stack>
         <PortalHost />
       </ThemeVariables>

@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/stores/auth';
 import { SocialConnections } from '@/components/social-connections';
 import { Button } from '@/components/ui/button';
 import {
@@ -17,13 +18,17 @@ import { Pressable, type TextInput, View } from 'react-native';
 
 export function SignInForm() {
   const passwordInputRef = React.useRef<TextInput>(null);
+  const signIn = useAuthStore((s) => s.signIn);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   function onEmailSubmitEditing() {
     passwordInputRef.current?.focus();
   }
 
   function onSubmit() {
-    router.push('/home')
+    signIn(email || 'user@example.com', password);
+    router.replace('/(tabs)/home');
   }
 
   return (
@@ -45,6 +50,8 @@ export function SignInForm() {
                 keyboardType="email-address"
                 autoComplete="email"
                 autoCapitalize="none"
+                value={email}
+                onChangeText={setEmail}
                 onSubmitEditing={onEmailSubmitEditing}
                 returnKeyType="next"
                 submitBehavior="submit"
@@ -67,11 +74,13 @@ export function SignInForm() {
                 ref={passwordInputRef}
                 id="password"
                 secureTextEntry
+                value={password}
+                onChangeText={setPassword}
                 returnKeyType="send"
                 onSubmitEditing={onSubmit}
               />
             </View>
-            <Button className="w-full" onPress={onSubmit}>
+            <Button className="w-full" onPress={() => onSubmit()}>
               <Text>Continue</Text>
             </Button>
           </View>

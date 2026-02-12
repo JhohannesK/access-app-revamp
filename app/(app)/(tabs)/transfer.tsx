@@ -100,10 +100,23 @@ export default function TransferScreen() {
     setCurrentStep(1);
   };
 
+  const calculateTransferDetails = () => {
+    const transferAmount = parseFloat(formData.amount) || 0;
+    const eLevy = transferAmount * 0.015; // 1.5% e-levy
+    const totalTransfer = transferAmount + eLevy;
+
+    return {
+      transferAmount: `₵${transferAmount.toFixed(2)}`,
+      eLevy: `₵${eLevy.toFixed(2)}`,
+      totalTransfer: `₵${totalTransfer.toFixed(2)}`,
+    };
+  };
+
+  const transferDetails = calculateTransferDetails();
+
   const handleStep3Confirm = () => {
     success();
     console.log('Transfer confirmed:', formData);
-    // Navigate to home with success params
     router.push({
       pathname: '/(tabs)/home',
       params: {
@@ -130,20 +143,6 @@ export default function TransferScreen() {
     });
     router.back();
   };
-
-  const calculateTransferDetails = () => {
-    const transferAmount = parseFloat(formData.amount) || 0;
-    const eLevy = transferAmount * 0.015; // 1.5% e-levy
-    const totalTransfer = transferAmount + eLevy;
-
-    return {
-      transferAmount: `₵${transferAmount.toFixed(2)}`,
-      eLevy: `₵${eLevy.toFixed(2)}`,
-      totalTransfer: `₵${totalTransfer.toFixed(2)}`,
-    };
-  };
-
-  const transferDetails = calculateTransferDetails();
 
   const renderCurrentStep = () => {
     switch (currentStep) {

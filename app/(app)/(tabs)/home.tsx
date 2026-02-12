@@ -16,7 +16,8 @@ import {
 import { useState, useEffect } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, router } from 'expo-router';
+import { useAuthStore } from '@/stores/auth';
 import { TransferSuccess } from '@/components/transfer/TransferSuccess';
 
 const MOCK_DATA = {
@@ -60,11 +61,11 @@ const MOCK_DATA = {
 };
 
 export default function HomeScreen() {
+  const signOut = useAuthStore((s) => s.signOut);
   const [balanceVisible, setBalanceVisible] = useState(true);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const insets = useSafeAreaInsets();
   const params = useLocalSearchParams();
-  const router = useRouter();
 
   useEffect(() => {
     if (params.transferSuccess === 'true') {
@@ -107,10 +108,21 @@ export default function HomeScreen() {
               </View>
             </View>
 
-            {/* Notifications */}
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <Icon as={BellIcon} className="text-foreground" size={22} />
-            </Button>
+            {/* Notifications + Sign out */}
+            <View className="flex-row gap-1">
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Icon as={BellIcon} className="text-foreground" size={22} />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onPress={() => {
+                  signOut();
+                  router.replace('/(auth)/sign-in');
+                }}>
+                <Text className="text-xs text-muted-foreground">Sign out</Text>
+              </Button>
+            </View>
           </View>
 
           {/* Account Balance */}
