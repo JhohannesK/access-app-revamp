@@ -215,7 +215,7 @@ export default function TransferScreen() {
                 router.back();
               }}
               className="h-10 w-full">
-              <Icon as={ArrowLeftIcon} className="text-input" size={24} />
+              <Icon as={ArrowLeftIcon} className="text-input dark:text-white" size={24} />
             </Button>
           </GlassView>
         ) : (
@@ -227,7 +227,7 @@ export default function TransferScreen() {
               router.back();
             }}
             className="h-10 w-10">
-            <Icon as={ArrowLeftIcon} className="text-input" size={24} />
+            <Icon as={ArrowLeftIcon} className="text-input dark:text-white" size={24} />
           </Button>
         )}
 

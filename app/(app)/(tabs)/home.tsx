@@ -3,6 +3,7 @@ import { QuickActionButton } from '@/components/banking/QuickActionButton';
 import { TransactionItem } from '@/components/banking/TransactionItem';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
+import { ProfileMenu } from '@/components/ui/profile-menu';
 import { Text } from '@/components/ui/text';
 import {
   BellIcon,
@@ -93,9 +94,16 @@ export default function HomeScreen() {
           <View className="mb-4 flex-row items-center justify-between">
             {/* User Profile */}
             <View className="flex-row items-center gap-3">
-              <View className="h-10 w-10 items-center justify-center rounded-full bg-primary/20">
-                <Text className="text-lg font-semibold text-primary">PP</Text>
-              </View>
+              <ProfileMenu
+                onSignOut={() => {
+                  signOut();
+                  router.replace('/(auth)/sign-in');
+                }}
+              >
+                <View className="h-10 w-10 items-center justify-center rounded-full bg-primary/20">
+                  <Text className="text-lg font-semibold text-primary">PP</Text>
+                </View>
+              </ProfileMenu>
               <View>
                 <Text className="font-semibold text-foreground">{MOCK_DATA.user.name}</Text>
                 <View className="mt-0.5 flex-row items-center gap-2">
@@ -108,21 +116,10 @@ export default function HomeScreen() {
               </View>
             </View>
 
-            {/* Notifications + Sign out */}
-            <View className="flex-row gap-1">
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <Icon as={BellIcon} className="text-foreground" size={22} />
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onPress={() => {
-                  signOut();
-                  router.replace('/(auth)/sign-in');
-                }}>
-                <Text className="text-xs text-muted-foreground">Sign out</Text>
-              </Button>
-            </View>
+            {/* Notifications */}
+            <Button variant="ghost" size="icon" className="rounded-full">
+              <Icon as={BellIcon} className="text-foreground" size={22} />
+            </Button>
           </View>
 
           {/* Account Balance */}
